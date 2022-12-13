@@ -57,8 +57,36 @@ public class Fabricante {
     }
 
     public static void updateFabricante(int id) throws SQLException{
-        
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "UPDATE Fabricante SET id = ? WHERE nome = ?;"
+            );
+            stmt.setInt(1, id);
+            stmt.setString(2, "João");
+            stmt.close();
     }
-        
+    public void deleteFabricante(int id) throws SQLException{
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "DELETE FROM Fabricante WHERE id = ?;"
+            );
+            stmt.setInt(1, id);
+            stmt.execute();
+            stmt.close();
+    }
     
+    @Override 
+    public String toString(){
+        return "Id: " + id + "\n"
+            + "Nome: " + nome + "\n"
+            + "Produto: " + this.idFabricante + "\n";
+    }
+    
+    @Override
+    public boolean equals (Object object){
+        if(object == null || !(object instanceof Fabricante)){
+            return false;
+        }
+        final Fabricante other = (Fabricante) object;
+        
+        return this.getId() == other.getId();
+    }
 }
