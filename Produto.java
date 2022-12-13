@@ -2,6 +2,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Produto {
 
@@ -9,6 +10,8 @@ public class Produto {
     private String descricao;
     private String tamanho;
     private String cor;
+
+    public static ArrayList<Produto> produtos = new ArrayList<>();
 
     public Produto(
         int id,
@@ -92,7 +95,7 @@ public class Produto {
         stmt.execute();
         stmt.close();
     }
-
+    
     @Override
     public String toString(){
         return "Id: " + id + "\n"

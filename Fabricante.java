@@ -2,12 +2,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Fabricante {
     
     private int id;
     private String nome;
     private int idProduto;
+
+    public static ArrayList<Fabricante> fabricantes = new ArrayList<>();
 
     public Fabricante(
         int id,
@@ -77,7 +80,7 @@ public class Fabricante {
     public String toString(){
         return "Id: " + id + "\n"
             + "Nome: " + nome + "\n"
-            + "Produto: " + this.idFabricante + "\n";
+            + "Produto: " + this.idProduto + "\n";
     }
     
     @Override

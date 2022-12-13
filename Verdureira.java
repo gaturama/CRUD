@@ -1,4 +1,8 @@
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Verdureira {
     
@@ -37,7 +41,7 @@ public class Verdureira {
                     alterarProduto(scanner);
                     break;
                 case 4: 
-                    excluirProduto(scanner);
+                    deleteProduto(scanner);
                     break;
                 case 5:
                     cadastrarFabricante(scanner);
@@ -49,10 +53,10 @@ public class Verdureira {
                     alterarFabricante(scanner);
                     break;
                 case 8: 
-                    excluirFabricante(scanner);
+                    deleteProduto(scanner);
                     break;
             }
-        }while(opcao!= 0);
+        }while(op!= 0);
         scanner.close();
     }
     
@@ -80,17 +84,15 @@ public class Verdureira {
             System.out.println(produto);
         }
     }
-    
-    public static void excluirProduto(Scanner scanner){
-        try{
-            System.out.println("Digite o Id do produto: ");
-            int id = scanner.nextInt();
-            Produto.excluir(id);
-            System.out.println("Produto excluído com sucesso!");
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+    public void deleteProduto(int id) throws SQLException{
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+                "DELETE FROM Produto WHERE id = ?;"
+        );
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
     }
+
     
     public static void cadastrarFabricante(Scanner scanner){
         try{
