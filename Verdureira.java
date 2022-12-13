@@ -55,4 +55,74 @@ public class Verdureira {
         }while(opcao!= 0);
         scanner.close();
     }
+    
+    public static void cadastrarProduto(Scanner scanner){
+        try{
+            System.out.println("Cadastro de Produtos");
+            System.out.println("Digite o Id do produto: ");
+            int id = scanner.nextInt();
+            System.out.println("Digite a descrição do produto: ");
+            String descricao = scanner.next();
+            System.out.println("Digite o tamanho do produto: ");
+            String tamanho = scanner.next();
+            System.out.println("Digite a cor do produto: ");
+            String cor = scanner.next();
+            
+            new Produto(id, descricao, tamanho, cor);
+        }catch(Exception e){
+            System.out.println("Erro ao cadastrar o Produto");
+        }
+    }
+    
+    public static void listarProduto(){
+        System.out.println("Listar Produto");
+        for(Produto produto : Produto.produtos){
+            System.out.println(produto);
+        }
+    }
+    
+    public static void excluirProduto(Scanner scanner){
+        try{
+            System.out.println("Digite o Id do produto: ");
+            int id = scanner.nextInt();
+            Produto.excluir(id);
+            System.out.println("Produto excluído com sucesso!");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void cadastrarFabricante(Scanner scanner){
+        try{
+            System.out.println("Cadastro de Fabricantes");
+            System.out.println("Digite o Id do fabricante: ");
+            int id = scanner.nextInt();
+            System.out.println("Digite nome do fabricante: ");
+            String nome = scanner.next();
+            System.out.println("Digite o produto desse fabricante: ");
+            int idProduto = scanner.nextInt();
+            
+            new Fabricante(id, nome, idProduto);
+        }catch(Exception e){
+            System.out.println("Erro ao cadastrar o Fabricante");
+        }
+    }
+    
+    public static void listarFabricante(){
+        System.out.println("Listar Fabricante");
+        for(Fabricante fabricante : Fabricante.fabricantes){
+            System.out.println(fabricante);
+        }
+    }
+    
+    public static void excluirFabricante(Scanner scanner){
+        try{
+            System.out.println("Digite o Id do fabricante: ");
+            int id = scanner.nextInt();
+            Fabricante.excluir(id);
+            System.out.println("Fabricante excluído com sucesso!");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 }
