@@ -21,7 +21,7 @@ USE `verdureiraCrud` ;
 -- Table `verdureiraCrud`.`Produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `verdureiraCrud`.`Produto` (
-  `idProduto` INT NOT NULL AUTO_INCREMENT,
+  `idProduto` INT NOT NULL,
   `descricao` VARCHAR(255) NOT NULL,
   `tamanho` VARCHAR(40) NOT NULL,
   `cor` VARCHAR(40) NULL,
@@ -33,11 +33,11 @@ ENGINE = InnoDB;
 -- Table `verdureiraCrud`.`Fabricante`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `verdureiraCrud`.`Fabricante` (
-  `idFabricante` INT NOT NULL AUTO_INCREMENT,
+  `idFabricante` INT NOT NULL ,
   `nome` VARCHAR(255) NOT NULL,
   `idProduto` INT NOT NULL,
   PRIMARY KEY (`idFabricante`),
-  INDEX `fk_Fabricante_Produto_idx` (`idProduto` ASC) VISIBLE,
+  INDEX `fk_Fabricante_Produto_idx` (`idProduto` ASC) ,
   CONSTRAINT `fk_Fabricante_Produto`
     FOREIGN KEY (`idProduto`)
     REFERENCES `verdureiraCrud`.`Produto` (`idProduto`)
@@ -50,4 +50,4 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-USE verdureiraCrud
+USE verdureiraCrud;

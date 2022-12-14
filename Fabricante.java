@@ -2,39 +2,37 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class Fabricante {
     
-    private int id;
+    private int idFabricante;
     private String nome;
     private int idProduto;
 
-    public static ArrayList<Fabricante> fabricantes = new ArrayList<>();
 
     public Fabricante(
-        int id,
+        int idFabricante,
         String nome,
         int idProduto
 
     ) throws SQLException{
-        this.id = id;
+        this.idFabricante = idFabricante;
         this.nome = nome;
 
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
-            "INSERT INTO Fabricante (id, nome, produto) VALUES (?, ? , ?)"
+            "INSERT INTO Fabricante (idFabricante, nome, produto) VALUES (?, ? , ?)"
         );
-        stmt.setInt(1, id);
+        stmt.setInt(1, idFabricante);
         stmt.setString(2, nome);
         stmt.setInt(3, idProduto);
         stmt.execute();
         stmt.close();
     }
     public int getId(){
-        return id;
+        return idFabricante;
     }
-    public void setId(int id){
-        this.id = id;
+    public void setId(int idFabricante){
+        this.idFabricante = idFabricante;
     }
     public String nome(){
         return nome;
@@ -59,26 +57,27 @@ public class Fabricante {
 
     }
 
-    public static void updateFabricante(int id) throws SQLException{
+    public static void updateFabricante(int idFabricante) throws SQLException{
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
             "UPDATE Fabricante SET id = ? WHERE nome = ?;"
             );
-            stmt.setInt(1, id);
+            stmt.setInt(1, idFabricante);
             stmt.setString(2, "João");
+            stmt.setInt(3, 1);
             stmt.close();
     }
-    public void deleteFabricante(int id) throws SQLException{
+    public static void deleteFabricante(int idFabricante) throws SQLException{
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
             "DELETE FROM Fabricante WHERE id = ?;"
             );
-            stmt.setInt(1, id);
+            stmt.setInt(1, idFabricante);
             stmt.execute();
             stmt.close();
     }
     
     @Override 
     public String toString(){
-        return "Id: " + id + "\n"
+        return "Id: " + idFabricante + "\n"
             + "Nome: " + nome + "\n"
             + "Produto: " + this.idProduto + "\n";
     }
