@@ -50,7 +50,7 @@ public class Produto {
         }
     }
 
-    public static void updateProduto(String descricao, String tamanho, String cor,int idProduto) throws SQLException{
+    public static void updateProduto(int idProduto, String descricao, String tamanho, String cor) throws SQLException{
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
             "UPDATE Produto SET descricao = ?, tamanho = ?, cor = ?, WHERE idProduto = ?;"
         );

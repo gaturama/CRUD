@@ -43,10 +43,11 @@ public class Verdureira {
                     System.out.println("Informe o Id do produto que você gostaria de alterar: ");
                     int idProduto = scanner.nextInt();
                     Produto.updateProduto(
+                        idProduto,
                         descricao,
                         tamanho,
-                        cor,
-                        idProduto);
+                        cor
+                        );
                     break;
                 case 4: 
                     deleteProduto();
@@ -62,7 +63,6 @@ public class Verdureira {
                     int idFabricante = scanner.nextInt();
                     System.out.println("Nome: ");
                     String nome = scanner.next();
-                  
                     Fabricante.updateFabricante(
                         idFabricante, 
                         nome);
