@@ -57,7 +57,7 @@ public class Produto {
         stmt.setString(1, "descricao");
         stmt.setString(2, "tamanho");
         stmt.setString(3, "cor");
-        stmt.setInt(4, 1);
+        stmt.setInt(4, idProduto);
         stmt.execute();
         stmt.close();
     }
