@@ -35,6 +35,42 @@ public class Produto {
         stmt.close();
     } 
 
+    public static void listarProduto() throws SQLException{
+        Connection connec = DAO.createConnection();
+        ResultSet rs = connec.createStatement().executeQuery(
+            "SELECT * FROM Produto;"
+        );
+        while(rs.next()){
+            System.out.println(
+                "ID: " + rs.getInt("idProduto") + 
+                "Descrição: " + rs.getString("descricao") + 
+                "Tamanho: " + rs.getString("tamanho") + 
+                "Cor: "  + rs.getString("cor")
+            );
+        }
+    }
+
+    public static void updateProduto(String descricao, String tamanho, String cor,int idProduto) throws SQLException{
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "UPDATE Produto SET descricao = ?, tamanho = ?, cor = ?, WHERE idProduto = ?;"
+        );
+        stmt.setString(1, "descricao");
+        stmt.setString(2, "tamanho");
+        stmt.setString(3, "cor");
+        stmt.setInt(4, 1);
+        stmt.execute();
+        stmt.close();
+    }
+
+    public static void deleteProduto(int idProduto) throws SQLException{
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+                "DELETE FROM Produto WHERE idProduto = ?;"
+        );
+        stmt.setInt(1, idProduto);
+        stmt.execute();
+        stmt.close();
+    }
+    
     public int getIdProduto(){
         return idProduto;
     }
@@ -59,42 +95,6 @@ public class Produto {
     public void setCor(String cor){
         this.cor = cor;
     }
-
-    public static void listarProduto() throws SQLException{
-        Connection connec = DAO.createConnection();
-        ResultSet rs = connec.createStatement().executeQuery(
-            "SELECT * FROM Produto;"
-        );
-        while(rs.next()){
-            System.out.println(
-                "ID: " + rs.getInt("idProduto") + 
-                "Descrição: " + rs.getString("descricao") + 
-                "Tamanho: " + rs.getString("tamanho") + 
-                "Cor: "  + rs.getString("cor")
-            );
-        }
-    }
-
-    public static void updateProduto(int idProduto) throws SQLException{
-        PreparedStatement stmt = DAO.createConnection().prepareStatement(
-            "UPDATE Produto SET descricao = ?, tamanho = ?, cor = ?, WHERE idProduto = ?;"
-        );
-        stmt.setString(1, "teste");
-        stmt.setString(2, "Grande");
-        stmt.setString(3, "Branco");
-        stmt.execute();
-        stmt.close();
-    }
-
-    public static void deleteProduto(int idProduto) throws SQLException{
-        PreparedStatement stmt = DAO.createConnection().prepareStatement(
-                "DELETE FROM Produto WHERE idProduto = ?;"
-        );
-        stmt.setInt(1, idProduto);
-        stmt.execute();
-        stmt.close();
-    }
-    
     @Override
     public String toString(){
         return "Id: " + idProduto + "\n"

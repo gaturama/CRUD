@@ -57,7 +57,7 @@ public class Fabricante {
 
     }
 
-    public static void updateFabricante(int idFabricante) throws SQLException{
+    public static void updateFabricante(int idFabricante, String nome) throws SQLException{
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
             "UPDATE Fabricante SET id = ? WHERE nome = ?;"
             );

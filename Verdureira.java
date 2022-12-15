@@ -3,10 +3,9 @@ import java.sql.SQLException;
 
 public class Verdureira {
     
-    public static void main(String[] args) throws Exception{
-        Scanner scanner = new Scanner(System.in);
-        int op = 0;
+    public static void main(String[] args) throws SQLException{
         
+        int op = 0;
         System.out.println("SEJA BEM VINDO A VERDUREIRA COLHEITA FELIZ");
             
         do{
@@ -29,21 +28,31 @@ public class Verdureira {
             
             switch (op) {
                 case 1:
-                    cadastrarProduto(scanner);
+                    cadastrarProduto();
                     break;
                 case 2:
                     Produto.listarProduto();
                     break;
                 case 3: 
+                    System.out.println("Descrição");
+                    String descricao = scanner.next();
+                    System.out.println("tamanho");
+                    String tamanho = scanner.next();
+                    System.out.println("Cor");
+                    String cor = scanner.next();
                     System.out.println("Informe o Id do produto que você gostaria de alterar: ");
                     int idProduto = scanner.nextInt();
-                    Produto.updateProduto(idProduto);
+                    Produto.updateProduto(
+                        descricao,
+                        tamanho,
+                        cor,
+                        idProduto);
                     break;
                 case 4: 
-                    deleteProduto(scanner);
+                    deleteProduto();
                     break;
                 case 5:
-                    cadastrarFabricante(scanner);
+                    cadastrarFabricante();
                     break;
                 case 6:
                     Fabricante.listarFabricante();
@@ -51,10 +60,15 @@ public class Verdureira {
                 case 7: 
                     System.out.println("Informe o Id do fabricante que você gostaria de alterar: ");
                     int idFabricante = scanner.nextInt();
-                    Fabricante.updateFabricante(idFabricante);
+                    System.out.println("Nome: ");
+                    String nome = scanner.next();
+                  
+                    Fabricante.updateFabricante(
+                        idFabricante, 
+                        nome);
                     break;
                 case 8: 
-                    deleteFabricante(scanner);
+                    deleteFabricante();
                     break;
             }
         }while(op!= 0);
@@ -62,7 +76,7 @@ public class Verdureira {
     }
 
 
-    public static void cadastrarProduto(Scanner scanner) throws SQLException{
+    public static void cadastrarProduto() throws SQLException{
         try{
             System.out.println("Cadastro de Produtos");
             System.out.println("Digite o Id do produto");
@@ -80,7 +94,7 @@ public class Verdureira {
         }
     }
     
-    public static void deleteProduto(Scanner scanner) throws SQLException{
+    public static void deleteProduto() throws SQLException{
         try{
             System.out.println("Informe o id do produto: ");
             int idProduto = scanner.nextInt();
@@ -91,7 +105,7 @@ public class Verdureira {
         }
     }
         
-    public static void cadastrarFabricante(Scanner scanner){
+    public static void cadastrarFabricante(){
         try{
             System.out.println("Cadastro de Fabricantes");
             System.out.println("Digite o Id do fabricante: ");
@@ -107,7 +121,7 @@ public class Verdureira {
         }
     }
     
-    public static void deleteFabricante(Scanner scanner) throws SQLException{
+    public static void deleteFabricante() throws SQLException{
         try{
         System.out.println("Informe o id do fabricante");
         int idFabricante = scanner.nextInt();
@@ -117,4 +131,6 @@ public class Verdureira {
             System.out.println(e.getMessage());
         }
     }
+
+    public static Scanner scanner = new Scanner(System.in);
 }
