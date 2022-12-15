@@ -48,7 +48,7 @@ public class Fabricante {
         );
         while(rs.next()){
             System.out.println(
-                "Id: " + rs.getInt("id") + 
+                "Id: " + rs.getInt("idFabricante") + 
                 "Nome: " + rs.getString("nome") + 
                 "Produto: " + rs.getInt("idProduto")
             );
@@ -63,7 +63,6 @@ public class Fabricante {
             );
             stmt.setInt(1, idFabricante);
             stmt.setString(2, "João");
-            stmt.setInt(3, 1);
             stmt.close();
     }
     public static void deleteFabricante(int idFabricante) throws SQLException{
