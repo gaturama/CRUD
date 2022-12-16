@@ -48,9 +48,9 @@ public class Fabricante {
         );
         while(rs.next()){
             System.out.println(
-                "Id: " + rs.getInt("idFabricante") + 
-                "Nome: " + rs.getString("nome") + 
-                "Produto: " + rs.getInt("idProduto")
+                "Id: " + rs.getInt("idFabricante") + "\n"
+                + "Nome: " + rs.getString("nome") + "\n"
+                + "Produto: " + rs.getInt("idProduto")
             );
 
         }
@@ -61,7 +61,7 @@ public class Fabricante {
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
             "UPDATE Fabricante SET id = ? WHERE nome = ?;"
             );
-            stmt.setInt(1, idFabricante);
+            stmt.setInt(1, 1);
             stmt.setString(2, "João");
             stmt.close();
     }

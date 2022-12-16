@@ -42,8 +42,8 @@ public class Produto {
         );
         while(rs.next()){
             System.out.println(
-                "ID: " + rs.getInt("idProduto") + 
-                "Descrição: " + rs.getString("descricao") + 
+                "ID: " + rs.getInt("idProduto") + "\n" +
+                "Descrição: " + rs.getString("descricao") + "\n" +
                 "Tamanho: " + rs.getString("tamanho") + 
                 "Cor: "  + rs.getString("cor")
             );
@@ -57,7 +57,7 @@ public class Produto {
         stmt.setString(1, "descricao");
         stmt.setString(2, "tamanho");
         stmt.setString(3, "cor");
-        stmt.setInt(4, idProduto);
+        stmt.setInt(4, 1);
         stmt.execute();
         stmt.close();
     }
